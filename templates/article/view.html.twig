@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.article_details'|trans({'%id%': article.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.article_details'|trans({'%id%': article.id|default('')}) }}</h1>
+
+    {% if article is defined %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ article.id }}</dd>
+
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{ article.title }}</dd>
+
+            <dt>{{ 'label.content'|trans }}</dt>
+            <dd>{{ article.content }}</dd>
+
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ article.createdAt|date('Y-m-d H:i') }}</dd>
+        </dl>
+
+        <p>
+            <a href="{{ path('article_index') }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

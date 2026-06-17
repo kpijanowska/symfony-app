@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.comment_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.comment_list'|trans }}</h1>
+
+    {% if pagination is defined and pagination|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'comment.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.nick'|trans, 'comment.nick') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'comment.email') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'comment.content') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'comment.createdAt') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for comment in pagination %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.nick }}</td>
+                    <td>{{ comment.email }}</td>
+                    <td>{{ comment.content }}</td>
+                    <td>
+                        {{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i') : '' }}
+                    </td>
+                    <td>
+                        <a href="{{ url('comment_view', {id: comment.id}) }}" title="{{ 'comment.view'|trans }}">
+                            {{ 'comment.view'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
