@@ -22,4 +22,25 @@ class CommentRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('comment');
     }
+    /**
+     * Save entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+
+    public function save(Comment $comment): void
+    {
+        $this->getEntityManager()->persist($comment);
+        $this->getEntityManager()->flush();
+    }
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function delete(Comment $comment): void
+    {
+        $this->getEntityManager()->remove($comment);
+        $this->getEntityManager()->flush();
+    }
 }

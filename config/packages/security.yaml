@@ -41,11 +41,10 @@ security:
         ROLE_ADMIN: [ ROLE_USER ]
 
     # Note: Only the *first* matching rule is applied
+    # Anonymous users may browse content and add comments; admin-only actions
+    # (create/edit/delete) are protected with #[IsGranted('ROLE_ADMIN')] on the controllers.
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/, roles: PUBLIC_ACCESS }
 
 when@test:
     security:

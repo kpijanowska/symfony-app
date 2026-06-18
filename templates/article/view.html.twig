@@ -28,6 +28,50 @@
             </a>
         </p>
 
+        <hr>
+
+        <h2>{{ 'title.comments'|trans }}</h2>
+
+        <p>
+            <a href="{{ path('comment_create', {id: article.id}) }}"
+               class="btn btn-primary">
+                {{ 'action.add_comment'|trans }}
+            </a>
+        </p>
+
+        {% if article.comments|length %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'label.nick'|trans }}</th>
+                    <th>{{ 'label.content'|trans }}</th>
+                    <th>{{ 'label.created_at'|trans }}</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>{{ 'label.actions'|trans }}</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in article.comments %}
+                    <tr>
+                        <td>{{ comment.nick }}</td>
+                        <td>{{ comment.content }}</td>
+                        <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i') : '' }}</td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{ path('comment_delete', {id: comment.id}) }}">
+                                    {{ 'action.delete'|trans }}
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>{{ 'message.no_comments'|trans }}</p>
+        {% endif %}
+
     {% else %}
         <p>
             {{ 'message.record_not_found'|trans }}

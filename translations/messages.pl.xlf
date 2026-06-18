@@ -87,6 +87,56 @@
                   <source>title.comment_details</source>
                   <target>Szczegóły komentarzy</target>
              </trans-unit>
+
+             <trans-unit id="title.comments">
+                  <source>title.comments</source>
+                  <target>Komentarze</target>
+             </trans-unit>
+
+             <trans-unit id="title.comment_create">
+                  <source>title.comment_create</source>
+                  <target>Dodaj komentarz</target>
+             </trans-unit>
+
+             <trans-unit id="title.comment_delete">
+                  <source>title.comment_delete</source>
+                  <target>Usuń komentarz</target>
+             </trans-unit>
+
+             <trans-unit id="action.add_comment">
+                  <source>action.add_comment</source>
+                  <target>Dodaj komentarz</target>
+             </trans-unit>
+
+             <trans-unit id="action.save">
+                  <source>action.save</source>
+                  <target>Zapisz</target>
+             </trans-unit>
+
+             <trans-unit id="action.delete">
+                  <source>action.delete</source>
+                  <target>Usuń</target>
+             </trans-unit>
+
+             <trans-unit id="message.no_comments">
+                  <source>message.no_comments</source>
+                  <target>Brak komentarzy.</target>
+             </trans-unit>
+
+             <trans-unit id="message.created_successfully">
+                  <source>message.created_successfully</source>
+                  <target>Rekord został utworzony.</target>
+             </trans-unit>
+
+             <trans-unit id="message.deleted_successfully">
+                  <source>message.deleted_successfully</source>
+                  <target>Rekord został usunięty.</target>
+             </trans-unit>
+
+             <trans-unit id="message.form_error">
+                  <source>message.form_error</source>
+                  <target>Formularz zawiera błędy.</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>
