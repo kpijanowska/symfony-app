@@ -15,7 +15,7 @@ use Doctrine\ORM\QueryBuilder;
  */
 class ArticleRepository extends ServiceEntityRepository
 {
-    public const PAGINATOR_ITEMS_PER_PAGE = 5;
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
