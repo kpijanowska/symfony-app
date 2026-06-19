@@ -21,7 +21,8 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'comment.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'comment.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'comment.createdAt') }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                <th>{{ 'action.view'|trans }}</th>
+                <th>{{ 'action.delete'|trans }}</th>
             </tr>
             </thead>
 
@@ -37,7 +38,12 @@
                     </td>
                     <td>
                         <a href="{{ url('comment_view', {id: comment.id}) }}" title="{{ 'comment.view'|trans }}">
-                            {{ 'comment.view'|trans }}
+                            {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('comment_delete', {id: comment.id}) }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>

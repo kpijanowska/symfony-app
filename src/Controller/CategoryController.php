@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
+use App\Service\ArticleServiceInterface;
 use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -18,6 +19,7 @@ class CategoryController extends AbstractController
 {
     public function __construct(
         private readonly CategoryServiceInterface $categoryService,
+        private readonly ArticleServiceInterface $articleService,
         private readonly TranslatorInterface $translator
     ) {
     }
@@ -161,11 +163,19 @@ class CategoryController extends AbstractController
             ]
         );
     }
-    #[Route('/category/{id}', name: 'category_view', methods: ['GET'])]
-    public function view(Category $category): Response
+    #[Route(
+        '/category/{id}',
+        name: 'category_view',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: ['GET']
+    )]
+    public function view(Category $category, #[MapQueryParameter] int $page = 1): Response
     {
+        $pagination = $this->articleService->getPaginatedListByCategory($page, $category);
+
         return $this->render('category/view.html.twig', [
             'category' => $category,
+            'pagination' => $pagination,
         ]);
     }
 }

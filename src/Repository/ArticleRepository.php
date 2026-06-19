@@ -30,6 +30,20 @@ class ArticleRepository extends ServiceEntityRepository
             )
             ->join('article.category', 'category');
     }
+
+    /**
+     * Query articles by category.
+     *
+     * @param Category $category Category entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByCategory(Category $category): QueryBuilder
+    {
+        return $this->queryAll()
+            ->andWhere('article.category = :category')
+            ->setParameter('category', $category);
+    }
     /**
      * Save entity.
      *

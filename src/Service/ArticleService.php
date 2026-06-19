@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -28,6 +29,25 @@ class ArticleService implements ArticleServiceInterface
                     'article.title',
                     'article.content',
                     'category.name',
+                ],
+                'defaultSortFieldName' => 'article.createdAt',
+                'defaultSortDirection' => 'desc',
+            ]
+        );
+    }
+
+    public function getPaginatedListByCategory(int $page, Category $category): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->articleRepository->queryByCategory($category),
+            $page,
+            ArticleRepository::PAGINATOR_ITEMS_PER_PAGE,
+            [
+                'sortFieldAllowList' => [
+                    'article.id',
+                    'article.createdAt',
+                    'article.title',
+                    'article.content',
                 ],
                 'defaultSortFieldName' => 'article.createdAt',
                 'defaultSortDirection' => 'desc',

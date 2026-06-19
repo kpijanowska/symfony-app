@@ -24,6 +24,50 @@
             </a>
         </p>
 
+        <h2>{{ 'title.article_list'|trans }}</h2>
+
+        {% if pagination is defined and pagination|length %}
+
+            <div class="navigation text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'article.id') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'article.title') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'article.createdAt') }}</th>
+                    <th>{{ 'label.actions'|trans }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for article in pagination %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i') : '' }}</td>
+                        <td>
+                            <a href="{{ path('article_view', {id: article.id}) }}">
+                                {{ 'action.view'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="navigation text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+
+        {% else %}
+            <p>
+                {{ 'message.empty_list'|trans }}
+            </p>
+        {% endif %}
+
     {% else %}
         <p>
             {{ 'message.record_not_found'|trans }}
