@@ -128,6 +128,56 @@
                   <target>Utwórz</target>
              </trans-unit>
 
+             <trans-unit id="action.change_password">
+                  <source>action.change_password</source>
+                  <target>Zmień hasło</target>
+             </trans-unit>
+
+             <trans-unit id="action.login">
+                  <source>action.login</source>
+                  <target>Zaloguj</target>
+             </trans-unit>
+
+             <trans-unit id="action.logout">
+                  <source>action.logout</source>
+                  <target>Wyloguj</target>
+             </trans-unit>
+
+             <trans-unit id="title.change_password">
+                  <source>title.change_password</source>
+                  <target>Zmiana hasła</target>
+             </trans-unit>
+
+             <trans-unit id="label.current_password">
+                  <source>label.current_password</source>
+                  <target>Aktualne hasło</target>
+             </trans-unit>
+
+             <trans-unit id="label.new_password">
+                  <source>label.new_password</source>
+                  <target>Nowe hasło</target>
+             </trans-unit>
+
+             <trans-unit id="label.repeat_password">
+                  <source>label.repeat_password</source>
+                  <target>Powtórz hasło</target>
+             </trans-unit>
+
+             <trans-unit id="message.password_changed_successfully">
+                  <source>message.password_changed_successfully</source>
+                  <target>Hasło zostało zmienione.</target>
+             </trans-unit>
+
+             <trans-unit id="message.wrong_current_password">
+                  <source>message.wrong_current_password</source>
+                  <target>Nieprawidłowe aktualne hasło.</target>
+             </trans-unit>
+
+             <trans-unit id="message.passwords_do_not_match">
+                  <source>message.passwords_do_not_match</source>
+                  <target>Hasła nie są identyczne.</target>
+             </trans-unit>
+
              <trans-unit id="message.no_comments">
                   <source>message.no_comments</source>
                   <target>Brak komentarzy.</target>

@@ -12,7 +12,25 @@
     {% endblock %}
 </head>
 <body>
-{# ... #}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <div class="container-fluid">
+        <div class="navbar-nav">
+            <a class="nav-link" href="{{ path('article_index') }}">{{ 'title.article_list'|trans }}</a>
+            <a class="nav-link" href="{{ path('category_index') }}">{{ 'title.category_list'|trans }}</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="nav-link" href="{{ path('comment_index') }}">{{ 'title.comment_list'|trans }}</a>
+                <a class="nav-link" href="{{ path('app_change_password') }}">{{ 'action.change_password'|trans }}</a>
+            {% endif %}
+        </div>
+        <div class="navbar-nav ms-auto">
+            {% if app.user %}
+                <a class="nav-link" href="{{ path('app_logout') }}">{{ 'action.logout'|trans }}</a>
+            {% else %}
+                <a class="nav-link" href="{{ path('app_login') }}">{{ 'action.login'|trans }}</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
 <div class="container-fluid">
     {% include 'default/_flash_messages.html.twig' %}
     {% block body %}{% endblock %}
