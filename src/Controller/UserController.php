@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\ChangePasswordType;
+use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,6 +66,52 @@ class UserController extends AbstractController
 
         return $this->render(
             'user/change_password.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     * Edit account action.
+     *
+     * The e-mail is the login identifier, so after changing it the current
+     * session becomes stale. The admin is logged out and must sign in again
+     * using the new e-mail.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/admin/edit', name: 'app_edit_account', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function editAccount(Request $request): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $form = $this->createForm(
+            UserType::class,
+            $user,
+            [
+                'action' => $this->generateUrl('app_edit_account'),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->userService->save($user);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.account_updated_relogin')
+            );
+
+            return $this->redirectToRoute('app_logout');
+        }
+
+        return $this->render(
+            'user/edit_account.html.twig',
             [
                 'form' => $form->createView(),
             ]

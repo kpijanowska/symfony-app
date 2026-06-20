@@ -133,6 +133,21 @@
                   <target>Zmień hasło</target>
              </trans-unit>
 
+             <trans-unit id="action.edit_account">
+                  <source>action.edit_account</source>
+                  <target>Edytuj dane</target>
+             </trans-unit>
+
+             <trans-unit id="title.edit_account">
+                  <source>title.edit_account</source>
+                  <target>Edycja danych administratora</target>
+             </trans-unit>
+
+             <trans-unit id="message.account_updated_relogin">
+                  <source>message.account_updated_relogin</source>
+                  <target>Dane zostały zmienione. Zaloguj się ponownie.</target>
+             </trans-unit>
+
              <trans-unit id="action.login">
                   <source>action.login</source>
                   <target>Zaloguj</target>
