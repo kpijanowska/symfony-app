@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_list'|trans }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ 'title.user_list'|trans }}</h1>
+
+    {% if is_granted('USER_CREATE') %}
+        <p>
+            <a href="{{ path('user_create') }}" class="btn btn-primary">
+                {{ 'action.create'|trans }}
+            </a>
+        </p>
+    {% endif %}
+
+    {% if pagination is defined and pagination|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'user.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'user.email') }}</th>
+                <th>{{ 'label.roles'|trans }}</th>
+                {% if is_granted('USER_CREATE') %}
+                    <th>{{ 'action.edit'|trans }}</th>
+                    <th>{{ 'action.delete'|trans }}</th>
+                {% endif %}
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for user in pagination %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                    {% if is_granted('USER_CREATE') %}
+                        <td>
+                            {% if is_granted('USER_EDIT', user) %}
+                                <a href="{{ path('user_edit', {id: user.id}) }}">
+                                    {{ 'action.edit'|trans }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if is_granted('USER_DELETE', user) %}
+                                <a href="{{ path('user_delete', {id: user.id}) }}">
+                                    {{ 'action.delete'|trans }}
+                                </a>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+{% endblock %}

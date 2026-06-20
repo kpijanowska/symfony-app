@@ -230,6 +230,38 @@
         <source>message.logged_in_as</source>
         <target>You are logged in as %identifier%.</target>
       </trans-unit>
+      <trans-unit id="title.user_list">
+        <source>title.user_list</source>
+        <target>User list</target>
+      </trans-unit>
+      <trans-unit id="title.user_create">
+        <source>title.user_create</source>
+        <target>Add user</target>
+      </trans-unit>
+      <trans-unit id="title.user_edit">
+        <source>title.user_edit</source>
+        <target>Edit user</target>
+      </trans-unit>
+      <trans-unit id="title.user_delete">
+        <source>title.user_delete</source>
+        <target>Delete user</target>
+      </trans-unit>
+      <trans-unit id="label.roles">
+        <source>label.roles</source>
+        <target>Roles</target>
+      </trans-unit>
+      <trans-unit id="label.role_user">
+        <source>label.role_user</source>
+        <target>User</target>
+      </trans-unit>
+      <trans-unit id="label.role_admin">
+        <source>label.role_admin</source>
+        <target>Administrator</target>
+      </trans-unit>
+      <trans-unit id="message.cannot_delete_last_admin">
+        <source>message.cannot_delete_last_admin</source>
+        <target>The last administrator cannot be deleted.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -287,6 +287,46 @@
                   <source>message.logged_in_as</source>
                   <target>Jesteś zalogowany jako %identifier%.</target>
              </trans-unit>
+
+             <trans-unit id="title.user_list">
+                  <source>title.user_list</source>
+                  <target>Lista użytkowników</target>
+             </trans-unit>
+
+             <trans-unit id="title.user_create">
+                  <source>title.user_create</source>
+                  <target>Dodaj użytkownika</target>
+             </trans-unit>
+
+             <trans-unit id="title.user_edit">
+                  <source>title.user_edit</source>
+                  <target>Edytuj użytkownika</target>
+             </trans-unit>
+
+             <trans-unit id="title.user_delete">
+                  <source>title.user_delete</source>
+                  <target>Usuń użytkownika</target>
+             </trans-unit>
+
+             <trans-unit id="label.roles">
+                  <source>label.roles</source>
+                  <target>Role</target>
+             </trans-unit>
+
+             <trans-unit id="label.role_user">
+                  <source>label.role_user</source>
+                  <target>Użytkownik</target>
+             </trans-unit>
+
+             <trans-unit id="label.role_admin">
+                  <source>label.role_admin</source>
+                  <target>Administrator</target>
+             </trans-unit>
+
+             <trans-unit id="message.cannot_delete_last_admin">
+                  <source>message.cannot_delete_last_admin</source>
+                  <target>Nie można usunąć ostatniego administratora.</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>
