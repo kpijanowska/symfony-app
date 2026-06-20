@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -21,9 +20,6 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 
         $categories = $manager
             ->getRepository(Category::class)
-            ->findAll();
-        $tags = $manager
-            ->getRepository(Tag::class)
             ->findAll();
 
         for ($i = 0; $i < 10; ++$i) {
@@ -43,10 +39,6 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
                 $categories[array_rand($categories)]
             );
 
-            $article->addTag(
-                $tags[array_rand($tags)]
-            );
-
             $manager->persist($article);
         }
 
@@ -57,7 +49,6 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             CategoryFixtures::class,
-            TagFixtures::class,
         ];
     }
 }
