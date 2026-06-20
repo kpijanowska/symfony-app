@@ -212,6 +212,81 @@
                   <source>message.form_error</source>
                   <target>Formularz zawiera błędy.</target>
              </trans-unit>
+
+             <trans-unit id="title.article_create">
+                  <source>title.article_create</source>
+                  <target>Dodaj artykuł</target>
+             </trans-unit>
+
+             <trans-unit id="title.article_edit">
+                  <source>title.article_edit</source>
+                  <target>Edytuj artykuł</target>
+             </trans-unit>
+
+             <trans-unit id="title.article_delete">
+                  <source>title.article_delete</source>
+                  <target>Usuń artykuł</target>
+             </trans-unit>
+
+             <trans-unit id="title.category_create">
+                  <source>title.category_create</source>
+                  <target>Dodaj kategorię</target>
+             </trans-unit>
+
+             <trans-unit id="title.category_edit">
+                  <source>title.category_edit</source>
+                  <target>Edytuj kategorię</target>
+             </trans-unit>
+
+             <trans-unit id="title.category_delete">
+                  <source>title.category_delete</source>
+                  <target>Usuń kategorię</target>
+             </trans-unit>
+
+             <trans-unit id="title.category_details">
+                  <source>title.category_details</source>
+                  <target>Szczegóły kategorii</target>
+             </trans-unit>
+
+             <trans-unit id="title.login">
+                  <source>title.login</source>
+                  <target>Zaloguj się</target>
+             </trans-unit>
+
+             <trans-unit id="label.category">
+                  <source>label.category</source>
+                  <target>Kategoria</target>
+             </trans-unit>
+
+             <trans-unit id="label.password">
+                  <source>label.password</source>
+                  <target>Hasło</target>
+             </trans-unit>
+
+             <trans-unit id="category.view">
+                  <source>category.view</source>
+                  <target>Wyświetl szczegóły</target>
+             </trans-unit>
+
+             <trans-unit id="message.record_not_found">
+                  <source>message.record_not_found</source>
+                  <target>Nie znaleziono rekordu.</target>
+             </trans-unit>
+
+             <trans-unit id="message.edited_successfully">
+                  <source>message.edited_successfully</source>
+                  <target>Rekord został zaktualizowany.</target>
+             </trans-unit>
+
+             <trans-unit id="message.category_contains_articles">
+                  <source>message.category_contains_articles</source>
+                  <target>Nie można usunąć kategorii zawierającej artykuły.</target>
+             </trans-unit>
+
+             <trans-unit id="message.logged_in_as">
+                  <source>message.logged_in_as</source>
+                  <target>Jesteś zalogowany jako %identifier%.</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>
