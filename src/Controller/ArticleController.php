@@ -6,8 +6,9 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\Type\ArticleType;
-use App\Repository\CommentRepository;
+use App\Security\Voter\ArticleVoter;
 use App\Service\ArticleServiceInterface;
+use App\Service\CommentServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +53,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/article/create', name: 'article_create', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(ArticleVoter::CREATE)]
     public function create(Request $request): Response
     {
         $article = new Article();
@@ -95,7 +96,7 @@ class ArticleController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'PUT']
     )]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(ArticleVoter::EDIT, subject: 'article')]
     public function edit(Request $request, Article $article): Response
     {
         $form = $this->createForm(
@@ -141,7 +142,7 @@ class ArticleController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'DELETE']
     )]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(ArticleVoter::DELETE, subject: 'article')]
     public function delete(Request $request, Article $article): Response
     {
         $form = $this->createForm(FormType::class, $article, [
@@ -170,11 +171,11 @@ class ArticleController extends AbstractController
         );
     }
     #[Route('/article/{id}', name: 'article_view')]
-    public function view(Article $article, CommentRepository $commentRepository): Response
+    public function view(Article $article, CommentServiceInterface $commentService): Response
     {
         return $this->render('article/view.html.twig', [
             'article' => $article,
-            'comments' => $commentRepository->findByArticle($article),
+            'comments' => $commentService->getCommentsByArticle($article),
         ]);
     }
 }

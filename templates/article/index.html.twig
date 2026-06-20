@@ -8,7 +8,7 @@
 
     <h1>{{ 'title.article_list'|trans }}</h1>
 
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ARTICLE_CREATE') %}
         <p>
             <a href="{{ path('article_create') }}" class="btn btn-primary">
                 {{ 'action.create'|trans }}
@@ -39,7 +39,7 @@
                     {{  knp_pagination_sortable(pagination,'label.created_at'|trans, 'article.createdAt') }}
                 </th>
                 <th>{{ 'action.view'|trans }}</th>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ARTICLE_CREATE') %}
                     <th>{{ 'action.edit'|trans }}</th>
                     <th>{{ 'action.delete'|trans }}</th>
                 {% endif %}
@@ -59,12 +59,14 @@
                             {{ 'action.view'|trans }}
                         </a>
                     </td>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ARTICLE_EDIT', article) %}
                         <td>
                             <a href="{{ path('article_edit', {id: article.id}) }}">
                                 {{ 'action.edit'|trans }}
                             </a>
                         </td>
+                    {% endif %}
+                    {% if is_granted('ARTICLE_DELETE', article) %}
                         <td>
                             <a href="{{ path('article_delete', {id: article.id}) }}">
                                 {{ 'action.delete'|trans }}

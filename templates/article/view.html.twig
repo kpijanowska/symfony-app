@@ -57,7 +57,7 @@
                         <td>{{ comment.nick }}</td>
                         <td>{{ comment.content }}</td>
                         <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i') : '' }}</td>
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('COMMENT_DELETE', comment) %}
                             <td>
                                 <a href="{{ path('comment_delete', {id: comment.id}) }}">
                                     {{ 'action.delete'|trans }}

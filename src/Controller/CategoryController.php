@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
+use App\Security\Voter\CategoryVoter;
 use App\Service\ArticleServiceInterface;
 use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,7 +39,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/category/create', name: 'category_create', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(CategoryVoter::CREATE)]
     public function create(Request $request): Response
     {
         $category = new Category();
@@ -81,7 +82,7 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'PUT']
     )]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(CategoryVoter::EDIT, subject: 'category')]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(
@@ -127,7 +128,7 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'DELETE']
     )]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(CategoryVoter::DELETE, subject: 'category')]
     public function delete(Request $request, Category $category): Response
     {
         if (!$this->categoryService->canBeDeleted($category)) {

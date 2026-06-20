@@ -8,7 +8,7 @@
 
     <h1>{{ 'title.category_list'|trans }}</h1>
 
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('CATEGORY_CREATE') %}
         <p>
             <a href="{{ path('category_create') }}" class="btn btn-primary">
                 {{ 'action.create'|trans }}
@@ -28,7 +28,7 @@
             <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'category.id') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'category.name') }}</th>
             <th>{{ 'action.view'|trans }}</th>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('CATEGORY_CREATE') %}
                 <th>{{ 'action.edit'|trans }}</th>
                 <th>{{ 'action.delete'|trans }}</th>
             {% endif %}
@@ -45,12 +45,14 @@
                     {{ 'action.view'|trans }}
                 </a>
             </td>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('CATEGORY_EDIT', category) %}
                 <td>
                     <a href="{{ url('category_edit', {id: category.id}) }}">
                         {{ 'action.edit'|trans }}
                     </a>
                 </td>
+            {% endif %}
+            {% if is_granted('CATEGORY_DELETE', category) %}
                 <td>
                     <a href="{{ url('category_delete', {id: category.id}) }}">
                         {{ 'action.delete'|trans }}

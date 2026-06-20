@@ -7,9 +7,8 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
-use App\Repository\CommentRepository;
+use App\Security\Voter\CommentVoter;
 use App\Service\CommentServiceInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,18 +34,9 @@ class CommentController extends AbstractController
 
     #[Route('/comment', name: 'comment_index')]
     #[IsGranted('ROLE_ADMIN')]
-    public function index(CommentRepository $commentRepository, PaginatorInterface $paginator, #[MapQueryParameter] int $page = 1): Response
+    public function index(#[MapQueryParameter] int $page = 1): Response
     {
-        $pagination = $paginator->paginate(
-            $commentRepository->queryAll(),
-            $page,
-            CommentRepository::PAGINATOR_ITEMS_PER_PAGE,
-            [
-                'sortFieldAllowList' => ['comment.id', 'comment.nick', 'comment.email', 'comment.content', 'comment.createdAt'],
-                'defaultSortFieldName' => 'comment.createdAt',
-                'defaultSortDirection' => 'desc',
-            ]
-        );
+        $pagination = $this->commentService->getPaginatedList($page);
 
         return $this->render('comment/index.html.twig', [
             'pagination' => $pagination,
@@ -115,7 +105,7 @@ class CommentController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET', 'DELETE']
     )]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted(CommentVoter::DELETE, subject: 'comment')]
     public function delete(Request $request, Comment $comment): Response
     {
         $articleId = $comment->getArticle()?->getId();
