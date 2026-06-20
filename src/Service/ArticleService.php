@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -12,6 +13,7 @@ class ArticleService implements ArticleServiceInterface
 {
     public function __construct(
         private readonly ArticleRepository $articleRepository,
+        private readonly CommentRepository $commentRepository,
         private readonly PaginatorInterface $paginator,
     ) {
     }
@@ -67,6 +69,9 @@ class ArticleService implements ArticleServiceInterface
 
     public function delete(Article $article): void
     {
+        // Relation is unidirectional, so remove dependent comments first
+        // to avoid a foreign key constraint violation.
+        $this->commentRepository->deleteByArticle($article);
         $this->articleRepository->delete($article);
     }
 }

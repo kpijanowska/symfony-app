@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Article;
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,6 +22,38 @@ class CommentRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('comment');
+    }
+
+    /**
+     * Find comments for a given article.
+     *
+     * @param Article $article Article entity
+     *
+     * @return Comment[] Array of comments
+     */
+    public function findByArticle(Article $article): array
+    {
+        return $this->createQueryBuilder('comment')
+            ->andWhere('comment.article = :article')
+            ->setParameter('article', $article)
+            ->orderBy('comment.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Delete all comments belonging to a given article.
+     *
+     * @param Article $article Article entity
+     */
+    public function deleteByArticle(Article $article): void
+    {
+        $this->createQueryBuilder('comment')
+            ->delete()
+            ->andWhere('comment.article = :article')
+            ->setParameter('article', $article)
+            ->getQuery()
+            ->execute();
     }
     /**
      * Save entity.

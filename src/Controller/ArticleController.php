@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\Type\ArticleType;
+use App\Repository\CommentRepository;
 use App\Service\ArticleServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -167,10 +168,11 @@ class ArticleController extends AbstractController
         );
     }
     #[Route('/article/{id}', name: 'article_view')]
-    public function view(Article $article): Response
+    public function view(Article $article, CommentRepository $commentRepository): Response
     {
         return $this->render('article/view.html.twig', [
             'article' => $article,
+            'comments' => $commentRepository->findByArticle($article),
         ]);
     }
 }

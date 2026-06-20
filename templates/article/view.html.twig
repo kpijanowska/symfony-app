@@ -39,7 +39,7 @@
             </a>
         </p>
 
-        {% if article.comments|length %}
+        {% if comments|length %}
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -52,7 +52,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for comment in article.comments %}
+                {% for comment in comments %}
                     <tr>
                         <td>{{ comment.nick }}</td>
                         <td>{{ comment.content }}</td>
