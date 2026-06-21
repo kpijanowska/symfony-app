@@ -36,7 +36,17 @@ interface ArticleServiceInterface
      */
     public function getPaginatedListByCategory(int $page, Category $category): PaginationInterface;
 
+    /**
+     * Save entity.
+     *
+     * @param Article $article Article entity
+     */
     public function save(Article $article): void;
 
+    /**
+     * Delete entity.
+     *
+     * @param Article $article Article entity
+     */
     public function delete(Article $article): void;
 }

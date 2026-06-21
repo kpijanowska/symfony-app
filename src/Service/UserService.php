@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User service.
+ */
+
 declare(strict_types=1);
 
 namespace App\Service;
@@ -28,11 +32,8 @@ class UserService implements UserServiceInterface
      * @param PaginatorInterface          $paginator      Paginator
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
-    public function __construct(
-        private readonly UserRepository $userRepository,
-        private readonly PaginatorInterface $paginator,
-        private readonly UserPasswordHasherInterface $passwordHasher,
-    ) {
+    public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private readonly UserPasswordHasherInterface $passwordHasher)
+    {
     }
 
     /**

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Article entity.
+ */
+
 declare(strict_types=1);
 
 namespace App\Entity;
@@ -10,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Article.
+ */
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[UniqueEntity(fields: ['title'])]
 class Article
@@ -36,16 +43,33 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for title.
+     *
+     * @return string|null Title
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for title.
+     *
+     * @param string $title Title
+     *
+     * @return static Self
+     */
     public function setTitle(string $title): static
     {
         $this->title = $title;
@@ -53,11 +77,23 @@ class Article
         return $this;
     }
 
+    /**
+     * Getter for content.
+     *
+     * @return string|null Content
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * Setter for content.
+     *
+     * @param string $content Content
+     *
+     * @return static Self
+     */
     public function setContent(string $content): static
     {
         $this->content = $content;
@@ -65,11 +101,23 @@ class Article
         return $this;
     }
 
+    /**
+     * Getter for created at.
+     *
+     * @return \DateTimeImmutable|null Created at
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * Setter for created at.
+     *
+     * @param \DateTimeImmutable $createdAt Created at
+     *
+     * @return static Self
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
@@ -77,11 +125,23 @@ class Article
         return $this;
     }
 
+    /**
+     * Getter for category.
+     *
+     * @return Category|null Category
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category Category
+     *
+     * @return static Self
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;

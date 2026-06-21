@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Category controller.
+ */
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -18,19 +22,32 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class CategoryController.
+ */
 class CategoryController extends AbstractController
 {
-    public function __construct(
-        private readonly CategoryServiceInterface $categoryService,
-        private readonly ArticleServiceInterface $articleService,
-        private readonly TranslatorInterface $translator,
-    ) {
+    /**
+     * Constructor.
+     *
+     * @param CategoryServiceInterface $categoryService Category service
+     * @param ArticleServiceInterface  $articleService  Article service
+     * @param TranslatorInterface      $translator      Translator
+     */
+    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly ArticleServiceInterface $articleService, private readonly TranslatorInterface $translator)
+    {
     }
 
+    /**
+     * Index action.
+     *
+     * @param int $page Page number
+     *
+     * @return Response HTTP response
+     */
     #[Route('/category', name: 'category_index')]
-    public function index(
-        #[MapQueryParameter] int $page = 1,
-    ): Response {
+    public function index(#[MapQueryParameter] int $page = 1): Response
+    {
         $pagination = $this->categoryService->getPaginatedList($page);
 
         return $this->render('category/index.html.twig', [
@@ -38,6 +55,13 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
     #[Route('/category/create', name: 'category_create', methods: ['GET', 'POST'])]
     #[IsGranted(CategoryVoter::CREATE)]
     public function create(Request $request): Response
@@ -169,6 +193,14 @@ class CategoryController extends AbstractController
         );
     }
 
+    /**
+     * View action.
+     *
+     * @param Category $category Category entity
+     * @param int      $page     Page number
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/category/{id}',
         name: 'category_view',

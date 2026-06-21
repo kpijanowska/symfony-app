@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User voter.
+ */
+
 declare(strict_types=1);
 
 namespace App\Security\Voter;
@@ -73,12 +77,8 @@ final class UserVoter extends Voter
      *
      * @return bool Result
      */
-    protected function voteOnAttribute(
-        string $attribute,
-        mixed $subject,
-        TokenInterface $token,
-        ?Vote $vote = null,
-    ): bool {
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
+    {
         $currentUser = $token->getUser();
         if (!$currentUser instanceof User) {
             return false;

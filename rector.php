@@ -9,10 +9,10 @@ use Rector\Symfony\Set\TwigSetList;
 return RectorConfig::configure()
     ->withPaths([
         //        __DIR__ . '/assets',
-        __DIR__ . '/config',
-        __DIR__ . '/public',
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
+        __DIR__.'/config',
+        __DIR__.'/public',
+        __DIR__.'/src',
+        __DIR__.'/tests',
     ])
 
     ->withParallel()

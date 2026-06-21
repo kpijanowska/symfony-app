@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User controller.
+ */
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -19,6 +23,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class UserController.
+ */
 class UserController extends AbstractController
 {
     /**
@@ -27,10 +34,8 @@ class UserController extends AbstractController
      * @param UserServiceInterface $userService User service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(
-        private readonly UserServiceInterface $userService,
-        private readonly TranslatorInterface $translator,
-    ) {
+    public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator)
+    {
     }
 
     /**

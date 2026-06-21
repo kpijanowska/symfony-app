@@ -27,11 +27,11 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.3",
-        "escapestudios/symfony2-coding-standard": "*",
+        "escapestudios/symfony2-coding-standard": "^3.18",
         "fakerphp/faker": "^1.24",
-        "friendsofphp/php-cs-fixer": "^3.95.1",
+        "friendsofphp/php-cs-fixer": "^3.95",
         "rector/rector": "^2.4.2",
-        "squizlabs/php_codesniffer": "*",
+        "squizlabs/php_codesniffer": "^4.0",
         "symfony/maker-bundle": "^1.67"
     },
     "config": {
@@ -79,8 +79,7 @@
             "./vendor/bin/phpcs --config-set default_standard Symfony",
             "./vendor/bin/phpcs --standard=Symfony src/ --ignore=Kernel.php",
             "./vendor/bin/phpcs --standard=Symfony tests/  --ignore=object-mapper.php",
-            "./vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12",
-            "./vendor/bin/php-cs-fixer fix tests/ --rules=@Symfony,@PSR1,@PSR2,@PSR12",
+            "./vendor/bin/php-cs-fixer fix",
             "./vendor/bin/rector process src",
             "./vendor/bin/rector process tests"
         ],

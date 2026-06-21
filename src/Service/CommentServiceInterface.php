@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment service interface.
+ */
+
 declare(strict_types=1);
 
 namespace App\Service;
@@ -8,6 +12,9 @@ use App\Entity\Article;
 use App\Entity\Comment;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
+/**
+ * Interface CommentServiceInterface.
+ */
 interface CommentServiceInterface
 {
     /**
@@ -28,7 +35,17 @@ interface CommentServiceInterface
      */
     public function getCommentsByArticle(Article $article): array;
 
+    /**
+     * Save entity.
+     *
+     * @param Comment $comment Comment entity
+     */
     public function save(Comment $comment): void;
 
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
     public function delete(Comment $comment): void;
 }

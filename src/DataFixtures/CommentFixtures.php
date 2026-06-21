@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment fixtures.
+ */
+
 declare(strict_types=1);
 
 namespace App\DataFixtures;
@@ -12,12 +16,20 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
 
+/**
+ * Class CommentFixtures.
+ */
 class CommentFixtures extends Fixture implements DependentFixtureInterface
 {
     protected Generator $faker;
 
     protected ObjectManager $manager;
 
+    /**
+     * Load data.
+     *
+     * @param ObjectManager $manager Object manager
+     */
     public function load(ObjectManager $manager): void
     {
         $this->faker = Factory::create();
@@ -49,6 +61,11 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+    /**
+     * Get dependencies.
+     *
+     * @return array<int, class-string> Dependencies
+     */
     public function getDependencies(): array
     {
         return [

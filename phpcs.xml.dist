@@ -8,9 +8,12 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <rule ref="PSR12"/>
+    <rule ref="vendor/escapestudios/symfony2-coding-standard/Symfony/ruleset.xml"/>
 
     <file>src/</file>
     <file>tests/</file>
+
+    <exclude-pattern>src/Kernel.php</exclude-pattern>
+    <exclude-pattern>tests/object-mapper.php</exclude-pattern>
 
 </ruleset>

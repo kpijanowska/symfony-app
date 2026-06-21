@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment service.
+ */
+
 declare(strict_types=1);
 
 namespace App\Service;
@@ -10,14 +14,28 @@ use App\Repository\CommentRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
+/**
+ * Class CommentService.
+ */
 class CommentService implements CommentServiceInterface
 {
-    public function __construct(
-        private readonly CommentRepository $commentRepository,
-        private readonly PaginatorInterface $paginator,
-    ) {
+    /**
+     * Constructor.
+     *
+     * @param CommentRepository  $commentRepository Comment repository
+     * @param PaginatorInterface $paginator         Paginator
+     */
+    public function __construct(private readonly CommentRepository $commentRepository, private readonly PaginatorInterface $paginator)
+    {
     }
 
+    /**
+     * Get paginated list of comments.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<int, mixed> Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -38,11 +56,23 @@ class CommentService implements CommentServiceInterface
         );
     }
 
+    /**
+     * Get comments for a given article.
+     *
+     * @param Article $article Article entity
+     *
+     * @return Comment[] Array of comments
+     */
     public function getCommentsByArticle(Article $article): array
     {
         return $this->commentRepository->findByArticle($article);
     }
 
+    /**
+     * Save entity.
+     *
+     * @param Comment $comment Comment entity
+     */
     public function save(Comment $comment): void
     {
         if (null === $comment->getId()) {
@@ -53,6 +83,11 @@ class CommentService implements CommentServiceInterface
         $this->commentRepository->save($comment);
     }
 
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
     public function delete(Comment $comment): void
     {
         $this->commentRepository->delete($comment);

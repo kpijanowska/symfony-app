@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Category fixtures.
+ */
+
 declare(strict_types=1);
 
 namespace App\DataFixtures;
@@ -9,8 +13,16 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
+/**
+ * Class CategoryFixtures.
+ */
 class CategoryFixtures extends Fixture
 {
+    /**
+     * Load data.
+     *
+     * @param ObjectManager $manager Object manager
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Category service.
+ */
+
 declare(strict_types=1);
 
 namespace App\Service;
@@ -12,15 +16,29 @@ use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
+/**
+ * Class CategoryService.
+ */
 class CategoryService implements CategoryServiceInterface
 {
-    public function __construct(
-        private readonly CategoryRepository $categoryRepository,
-        private readonly PaginatorInterface $paginator,
-        private readonly ArticleRepository $articleRepository,
-    ) {
+    /**
+     * Constructor.
+     *
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator
+     * @param ArticleRepository  $articleRepository  Article repository
+     */
+    public function __construct(private readonly CategoryRepository $categoryRepository, private readonly PaginatorInterface $paginator, private readonly ArticleRepository $articleRepository)
+    {
     }
 
+    /**
+     * Get paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<int, mixed> Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -38,11 +56,21 @@ class CategoryService implements CategoryServiceInterface
         );
     }
 
+    /**
+     * Save entity.
+     *
+     * @param Category $category Category entity
+     */
     public function save(Category $category): void
     {
         $this->categoryRepository->save($category);
     }
 
+    /**
+     * Delete entity.
+     *
+     * @param Category $category Category entity
+     */
     public function delete(Category $category): void
     {
         $this->categoryRepository->delete($category);
@@ -61,7 +89,7 @@ class CategoryService implements CategoryServiceInterface
             $result = $this->articleRepository->countByCategory($category);
 
             return !($result > 0);
-        } catch (NoResultException | NonUniqueResultException) {
+        } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
     }

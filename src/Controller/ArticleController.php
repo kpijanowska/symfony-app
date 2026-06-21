@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Article controller.
+ */
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -18,6 +22,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class ArticleController.
+ */
 class ArticleController extends AbstractController
 {
     /**
@@ -26,10 +33,8 @@ class ArticleController extends AbstractController
      * @param ArticleServiceInterface $articleService Article service
      * @param TranslatorInterface     $translator     Translator
      */
-    public function __construct(
-        private readonly ArticleServiceInterface $articleService,
-        private readonly TranslatorInterface $translator,
-    ) {
+    public function __construct(private readonly ArticleServiceInterface $articleService, private readonly TranslatorInterface $translator)
+    {
     }
 
     /**
@@ -52,6 +57,13 @@ class ArticleController extends AbstractController
         );
     }
 
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
     #[Route('/article/create', name: 'article_create', methods: ['GET', 'POST'])]
     #[IsGranted(ArticleVoter::CREATE)]
     public function create(Request $request): Response
@@ -173,6 +185,14 @@ class ArticleController extends AbstractController
         );
     }
 
+    /**
+     * View action.
+     *
+     * @param Article                 $article        Article entity
+     * @param CommentServiceInterface $commentService Comment service
+     *
+     * @return Response HTTP response
+     */
     #[Route('/article/{id}', name: 'article_view')]
     public function view(Article $article, CommentServiceInterface $commentService): Response
     {

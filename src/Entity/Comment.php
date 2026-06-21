@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment entity.
+ */
+
 declare(strict_types=1);
 
 namespace App\Entity;
@@ -9,6 +13,9 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Comment.
+ */
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
@@ -40,16 +47,33 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?Article $article = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for nick.
+     *
+     * @return string|null Nick
+     */
     public function getNick(): ?string
     {
         return $this->nick;
     }
 
+    /**
+     * Setter for nick.
+     *
+     * @param string $nick Nick
+     *
+     * @return static Self
+     */
     public function setNick(string $nick): static
     {
         $this->nick = $nick;
@@ -57,11 +81,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for email.
+     *
+     * @return string|null Email
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Setter for email.
+     *
+     * @param string $email Email
+     *
+     * @return static Self
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -69,11 +105,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for content.
+     *
+     * @return string|null Content
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * Setter for content.
+     *
+     * @param string $content Content
+     *
+     * @return static Self
+     */
     public function setContent(string $content): static
     {
         $this->content = $content;
@@ -81,11 +129,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for created at.
+     *
+     * @return \DateTimeImmutable|null Created at
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * Setter for created at.
+     *
+     * @param \DateTimeImmutable $createdAt Created at
+     *
+     * @return static Self
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
@@ -93,11 +153,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for article.
+     *
+     * @return Article|null Article
+     */
     public function getArticle(): ?Article
     {
         return $this->article;
     }
 
+    /**
+     * Setter for article.
+     *
+     * @param Article|null $article Article
+     *
+     * @return static Self
+     */
     public function setArticle(?Article $article): static
     {
         $this->article = $article;

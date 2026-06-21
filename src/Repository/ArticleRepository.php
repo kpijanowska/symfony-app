@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Article repository.
+ */
+
 declare(strict_types=1);
 
 namespace App\Repository;
@@ -19,11 +23,21 @@ class ArticleRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
     }
 
+    /**
+     * Query all articles.
+     *
+     * @return QueryBuilder Query builder
+     */
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('article')

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Security controller.
+ */
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -10,6 +14,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class SecurityController.
+ */
 class SecurityController extends AbstractController
 {
     /**

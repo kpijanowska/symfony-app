@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment controller.
+ */
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -18,6 +22,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class CommentController.
+ */
 class CommentController extends AbstractController
 {
     /**
@@ -26,12 +33,17 @@ class CommentController extends AbstractController
      * @param CommentServiceInterface $commentService Comment service
      * @param TranslatorInterface     $translator     Translator
      */
-    public function __construct(
-        private readonly CommentServiceInterface $commentService,
-        private readonly TranslatorInterface $translator,
-    ) {
+    public function __construct(private readonly CommentServiceInterface $commentService, private readonly TranslatorInterface $translator)
+    {
     }
 
+    /**
+     * Index action.
+     *
+     * @param int $page Page number
+     *
+     * @return Response HTTP response
+     */
     #[Route('/comment', name: 'comment_index')]
     #[IsGranted('ROLE_ADMIN')]
     public function index(#[MapQueryParameter] int $page = 1): Response
@@ -136,6 +148,13 @@ class CommentController extends AbstractController
         );
     }
 
+    /**
+     * View action.
+     *
+     * @param Comment $comment Comment entity
+     *
+     * @return Response HTTP response
+     */
     #[Route('/comment/{id}', name: 'comment_view', requirements: ['id' => '[1-9]\d*'])]
     public function view(Comment $comment): Response
     {

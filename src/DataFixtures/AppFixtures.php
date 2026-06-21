@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * App fixtures.
+ */
+
 declare(strict_types=1);
 
 namespace App\DataFixtures;
@@ -7,8 +11,16 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+/**
+ * Class AppFixtures.
+ */
 class AppFixtures extends Fixture
 {
+    /**
+     * Load data.
+     *
+     * @param ObjectManager $manager Object manager
+     */
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();

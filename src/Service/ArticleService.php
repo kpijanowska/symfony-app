@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Article service.
+ */
+
 declare(strict_types=1);
 
 namespace App\Service;
@@ -11,15 +15,29 @@ use App\Repository\CommentRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
+/**
+ * Class ArticleService.
+ */
 class ArticleService implements ArticleServiceInterface
 {
-    public function __construct(
-        private readonly ArticleRepository $articleRepository,
-        private readonly CommentRepository $commentRepository,
-        private readonly PaginatorInterface $paginator,
-    ) {
+    /**
+     * Constructor.
+     *
+     * @param ArticleRepository  $articleRepository Article repository
+     * @param CommentRepository  $commentRepository Comment repository
+     * @param PaginatorInterface $paginator         Paginator
+     */
+    public function __construct(private readonly ArticleRepository $articleRepository, private readonly CommentRepository $commentRepository, private readonly PaginatorInterface $paginator)
+    {
     }
 
+    /**
+     * Get paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<int, mixed> Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -40,6 +58,14 @@ class ArticleService implements ArticleServiceInterface
         );
     }
 
+    /**
+     * Get paginated list of articles for a given category.
+     *
+     * @param int      $page     Page number
+     * @param Category $category Category entity
+     *
+     * @return PaginationInterface<int, mixed> Paginated list
+     */
     public function getPaginatedListByCategory(int $page, Category $category): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -59,6 +85,11 @@ class ArticleService implements ArticleServiceInterface
         );
     }
 
+    /**
+     * Save entity.
+     *
+     * @param Article $article Article entity
+     */
     public function save(Article $article): void
     {
         if (null === $article->getId()) {
@@ -69,6 +100,11 @@ class ArticleService implements ArticleServiceInterface
         $this->articleRepository->save($article);
     }
 
+    /**
+     * Delete entity.
+     *
+     * @param Article $article Article entity
+     */
     public function delete(Article $article): void
     {
         // Relation is unidirectional, so remove dependent comments first

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment voter.
+ */
+
 declare(strict_types=1);
 
 namespace App\Security\Voter;
@@ -58,12 +62,8 @@ final class CommentVoter extends Voter
      *
      * @return bool Result
      */
-    protected function voteOnAttribute(
-        string $attribute,
-        mixed $subject,
-        TokenInterface $token,
-        ?Vote $vote = null,
-    ): bool {
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
+    {
         if (!$token->getUser() instanceof UserInterface) {
             return false;
         }

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Comment repository.
+ */
+
 declare(strict_types=1);
 
 namespace App\Repository;
@@ -17,11 +21,21 @@ class CommentRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 5;
 
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
     }
 
+    /**
+     * Query all comments.
+     *
+     * @return QueryBuilder Query builder
+     */
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('comment');

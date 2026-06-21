@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User fixtures.
+ */
+
 declare(strict_types=1);
 
 namespace App\DataFixtures;
@@ -10,13 +14,25 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * Class UserFixtures.
+ */
 class UserFixtures extends Fixture
 {
-    public function __construct(
-        private readonly UserPasswordHasherInterface $passwordHasher,
-    ) {
+    /**
+     * Constructor.
+     *
+     * @param UserPasswordHasherInterface $passwordHasher Password hasher
+     */
+    public function __construct(private readonly UserPasswordHasherInterface $passwordHasher)
+    {
     }
 
+    /**
+     * Load data.
+     *
+     * @param ObjectManager $manager Object manager
+     */
     public function load(ObjectManager $manager): void
     {
         for ($i = 0; $i < 10; ++$i) {

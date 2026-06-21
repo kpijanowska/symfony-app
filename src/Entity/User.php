@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User entity.
+ */
+
 declare(strict_types=1);
 
 namespace App\Entity;
@@ -11,6 +15,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class User.
+ */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'])]
@@ -39,16 +46,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?string $password = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for email.
+     *
+     * @return string|null Email
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Setter for email.
+     *
+     * @param string $email Email
+     *
+     * @return static Self
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -59,6 +83,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * A visual identifier that represents this user.
      *
+     * @return string User identifier
+     *
      * @see UserInterface
      */
     public function getUserIdentifier(): string
@@ -67,6 +93,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for roles.
+     *
+     * @return list<string> User roles
+     *
      * @see UserInterface
      */
     public function getRoles(): array
@@ -79,7 +109,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param list<string> $roles
+     * Setter for roles.
+     *
+     * @param list<string> $roles User roles
+     *
+     * @return static Self
      */
     public function setRoles(array $roles): static
     {
@@ -89,6 +123,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for password.
+     *
+     * @return string|null Hashed password
+     *
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): ?string
@@ -96,6 +134,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
+    /**
+     * Setter for password.
+     *
+     * @param string $password Hashed password
+     *
+     * @return static Self
+     */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -104,12 +149,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
+     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them.
+     *
+     * @return array<string, mixed> Serialized data
      */
     public function __serialize(): array
     {
         $data = (array) $this;
-        $data["\0" . self::class . "\0password"] = hash('crc32c', (string) $this->password);
+        $data["\0".self::class."\0password"] = hash('crc32c', (string) $this->password);
 
         return $data;
     }
