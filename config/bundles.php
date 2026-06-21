@@ -1,13 +1,23 @@
 <?php
 
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\MakerBundle\MakerBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
+use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
+use Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle;
+
 return [
-    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
-    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
-    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
-    Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
-    Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
-    Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
-    Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
-    Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
-    Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
+    FrameworkBundle::class => ['all' => true],
+    MakerBundle::class => ['dev' => true],
+    SecurityBundle::class => ['all' => true],
+    DoctrineBundle::class => ['all' => true],
+    DoctrineMigrationsBundle::class => ['all' => true],
+    DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
+    TwigBundle::class => ['all' => true],
+    KnpPaginatorBundle::class => ['all' => true],
+    StofDoctrineExtensionsBundle::class => ['all' => true],
 ];

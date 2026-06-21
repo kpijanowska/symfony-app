@@ -15,6 +15,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Article voter.
  *
  * Decides whether the current user may create, edit or delete an article.
+ *
+ * @extends Voter<string, Article|null>
  */
 final class ArticleVoter extends Voter
 {
@@ -70,8 +72,12 @@ final class ArticleVoter extends Voter
      *
      * @return bool Result
      */
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
-    {
+    protected function voteOnAttribute(
+        string $attribute,
+        mixed $subject,
+        TokenInterface $token,
+        ?Vote $vote = null,
+    ): bool {
         if (!$token->getUser() instanceof UserInterface) {
             return false;
         }

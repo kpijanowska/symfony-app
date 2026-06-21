@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
- * Category type.
+ * Article type.
  */
+
+declare(strict_types=1);
 
 namespace App\Form\Type;
 
@@ -42,14 +42,15 @@ class ArticleType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['maxlength' => 255],
-            ])
+            ]
+        )
         ->add(
-        'content',
-        TextareaType::class,
-        [
-            'label' => 'label.content',
-        ]
-    )
+            'content',
+            TextareaType::class,
+            [
+                'label' => 'label.content',
+            ]
+        )
             ->add(
                 'category',
                 EntityType::class,

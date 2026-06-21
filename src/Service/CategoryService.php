@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Category;
+use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Repository\ArticleRepository;
+
 class CategoryService implements CategoryServiceInterface
 {
     public function __construct(

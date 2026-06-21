@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Article service interface.
  */
+
+declare(strict_types=1);
 
 namespace App\Service;
 
@@ -22,7 +22,7 @@ interface ArticleServiceInterface
      *
      * @param int $page Page number
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<int, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
@@ -32,7 +32,7 @@ interface ArticleServiceInterface
      * @param int      $page     Page number
      * @param Category $category Category entity
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<int, mixed> Paginated list
      */
     public function getPaginatedListByCategory(int $page, Category $category): PaginationInterface;
 

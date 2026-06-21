@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Category type.
  */
+
+declare(strict_types=1);
 
 namespace App\Form\Type;
 
@@ -39,7 +39,8 @@ class CategoryType extends AbstractType
                 'label' => 'label.name',
                 'required' => true,
                 'attr' => ['maxlength' => 255],
-            ]);
+            ]
+        );
     }
 
     /**

@@ -7,8 +7,8 @@ namespace App\Repository;
 use App\Entity\Article;
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Comment>
@@ -16,6 +16,7 @@ use Doctrine\ORM\QueryBuilder;
 class CommentRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 5;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
@@ -57,17 +58,18 @@ class CommentRepository extends ServiceEntityRepository
             ->getQuery()
             ->execute();
     }
+
     /**
      * Save entity.
      *
      * @param Comment $comment Comment entity
      */
-
     public function save(Comment $comment): void
     {
         $this->getEntityManager()->persist($comment);
         $this->getEntityManager()->flush();
     }
+
     /**
      * Delete entity.
      *

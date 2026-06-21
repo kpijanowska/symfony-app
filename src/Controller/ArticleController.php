@@ -18,18 +18,18 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-
 class ArticleController extends AbstractController
 {
     /**
      * Constructor.
      *
-     * @param ArticleService $articleService Article service
+     * @param ArticleServiceInterface $articleService Article service
+     * @param TranslatorInterface     $translator     Translator
      */
     public function __construct(
         private readonly ArticleServiceInterface $articleService,
-        private readonly TranslatorInterface $translator
-    ){
+        private readonly TranslatorInterface $translator,
+    ) {
     }
 
     /**
@@ -82,10 +82,11 @@ class ArticleController extends AbstractController
             ]
         );
     }
+
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Article $article Article entity
      *
      * @return Response HTTP response
@@ -128,10 +129,11 @@ class ArticleController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Article $article Article entity
      *
      * @return Response HTTP response
@@ -170,6 +172,7 @@ class ArticleController extends AbstractController
             ]
         );
     }
+
     #[Route('/article/{id}', name: 'article_view')]
     public function view(Article $article, CommentServiceInterface $commentService): Response
     {

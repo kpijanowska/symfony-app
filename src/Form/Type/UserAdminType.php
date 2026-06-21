@@ -32,7 +32,7 @@ class UserAdminType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $passwordConstraints = $options['require_password']
-            ? [new NotBlank(), new Length(['min' => 6, 'max' => 4096])]
+            ? [new NotBlank(), new Length(min: 6, max: 4096)]
             : [];
 
         $builder

@@ -31,7 +31,7 @@ class UserService implements UserServiceInterface
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly PaginatorInterface $paginator,
-        private readonly UserPasswordHasherInterface $passwordHasher
+        private readonly UserPasswordHasherInterface $passwordHasher,
     ) {
     }
 
@@ -40,7 +40,7 @@ class UserService implements UserServiceInterface
      *
      * @param int $page Page number
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<int, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface
     {

@@ -9,8 +9,8 @@ use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -18,6 +18,7 @@ use Doctrine\ORM\QueryBuilder;
 class ArticleRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
@@ -46,17 +47,18 @@ class ArticleRepository extends ServiceEntityRepository
             ->andWhere('article.category = :category')
             ->setParameter('category', $category);
     }
+
     /**
      * Save entity.
      *
      * @param Article $article Article entity
      */
-
     public function save(Article $article): void
     {
         $this->getEntityManager()->persist($article);
         $this->getEntityManager()->flush();
     }
+
     /**
      * Delete entity.
      *
@@ -87,5 +89,4 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-
 }

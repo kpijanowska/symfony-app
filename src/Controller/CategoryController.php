@@ -23,14 +23,14 @@ class CategoryController extends AbstractController
     public function __construct(
         private readonly CategoryServiceInterface $categoryService,
         private readonly ArticleServiceInterface $articleService,
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
     ) {
     }
+
     #[Route('/category', name: 'category_index')]
     public function index(
-        #[MapQueryParameter] int $page = 1
-    ): Response
-    {
+        #[MapQueryParameter] int $page = 1,
+    ): Response {
         $pagination = $this->categoryService->getPaginatedList($page);
 
         return $this->render('category/index.html.twig', [
@@ -68,6 +68,7 @@ class CategoryController extends AbstractController
             ]
         );
     }
+
     /**
      * Edit action.
      *
@@ -114,6 +115,7 @@ class CategoryController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
@@ -166,6 +168,7 @@ class CategoryController extends AbstractController
             ]
         );
     }
+
     #[Route(
         '/category/{id}',
         name: 'category_view',

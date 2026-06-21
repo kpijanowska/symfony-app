@@ -17,7 +17,7 @@ interface UserServiceInterface
      *
      * @param int $page Page number
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<int, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
 

@@ -16,6 +16,8 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
  * Decides whether the current user may manage user accounts. Provides per-object
  * rules (e.g. an administrator cannot delete their own account), which protects
  * against IDOR-style access.
+ *
+ * @extends Voter<string, User|null>
  */
 final class UserVoter extends Voter
 {
@@ -71,8 +73,12 @@ final class UserVoter extends Voter
      *
      * @return bool Result
      */
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
-    {
+    protected function voteOnAttribute(
+        string $attribute,
+        mixed $subject,
+        TokenInterface $token,
+        ?Vote $vote = null,
+    ): bool {
         $currentUser = $token->getUser();
         if (!$currentUser instanceof User) {
             return false;

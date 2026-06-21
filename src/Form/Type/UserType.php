@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * User type.
  */
+
+declare(strict_types=1);
 
 namespace App\Form\Type;
 

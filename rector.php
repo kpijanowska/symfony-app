@@ -8,7 +8,7 @@ use Rector\Symfony\Set\TwigSetList;
 
 return RectorConfig::configure()
     ->withPaths([
-//        __DIR__ . '/assets',
+        //        __DIR__ . '/assets',
         __DIR__ . '/config',
         __DIR__ . '/public',
         __DIR__ . '/src',
@@ -42,5 +42,3 @@ return RectorConfig::configure()
     //   removeUnusedImports: bool = true
     // )
     ->withImportNames(importShortClasses: false);
-
-

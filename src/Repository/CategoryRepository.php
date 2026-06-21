@@ -15,6 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class CategoryRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 5;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
@@ -24,17 +25,18 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('category');
     }
+
     /**
      * Save entity.
      *
      * @param Category $category Category entity
      */
-
     public function save(Category $category): void
     {
         $this->getEntityManager()->persist($category);
         $this->getEntityManager()->flush();
     }
+
     /**
      * Delete entity.
      *
@@ -45,5 +47,4 @@ class CategoryRepository extends ServiceEntityRepository
         $this->getEntityManager()->remove($category);
         $this->getEntityManager()->flush();
     }
-
 }

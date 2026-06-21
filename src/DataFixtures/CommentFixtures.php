@@ -27,7 +27,6 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
             ->findAll();
 
         for ($i = 0; $i < 10; ++$i) {
-
             $comment = new Comment();
 
             $comment->setNick($this->faker->userName());

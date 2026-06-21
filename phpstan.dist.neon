@@ -6,3 +6,9 @@ parameters:
         - public/
         - src/
         - tests/
+    ignoreErrors:
+        # Entity identifiers are assigned by Doctrine via reflection, which
+        # PHPStan cannot see without the doctrine extension. The ?int type is correct.
+        -
+            message: '#Property App\\Entity\\.+::\$id \(int\|null\) is never assigned int so it can be removed from the property type\.#'
+            identifier: property.unusedType

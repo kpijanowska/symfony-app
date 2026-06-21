@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Change password type.
  */
+
+declare(strict_types=1);
 
 namespace App\Form\Type;
 
@@ -54,7 +54,7 @@ class ChangePasswordType extends AbstractType
                     'invalid_message' => 'message.passwords_do_not_match',
                     'constraints' => [
                         new NotBlank(),
-                        new Length(['min' => 6, 'max' => 4096]),
+                        new Length(min: 6, max: 4096),
                     ],
                 ]
             );

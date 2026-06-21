@@ -15,6 +15,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Category voter.
  *
  * Decides whether the current user may create, edit or delete a category.
+ *
+ * @extends Voter<string, Category|null>
  */
 final class CategoryVoter extends Voter
 {
@@ -70,8 +72,12 @@ final class CategoryVoter extends Voter
      *
      * @return bool Result
      */
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
-    {
+    protected function voteOnAttribute(
+        string $attribute,
+        mixed $subject,
+        TokenInterface $token,
+        ?Vote $vote = null,
+    ): bool {
         if (!$token->getUser() instanceof UserInterface) {
             return false;
         }

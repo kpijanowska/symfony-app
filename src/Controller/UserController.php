@@ -29,7 +29,7 @@ class UserController extends AbstractController
      */
     public function __construct(
         private readonly UserServiceInterface $userService,
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
     ) {
     }
 

@@ -16,6 +16,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * Decides whether the current user may delete a comment. Adding comments is
  * public, so it is not handled here.
+ *
+ * @extends Voter<string, Comment>
  */
 final class CommentVoter extends Voter
 {
@@ -56,8 +58,12 @@ final class CommentVoter extends Voter
      *
      * @return bool Result
      */
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
-    {
+    protected function voteOnAttribute(
+        string $attribute,
+        mixed $subject,
+        TokenInterface $token,
+        ?Vote $vote = null,
+    ): bool {
         if (!$token->getUser() instanceof UserInterface) {
             return false;
         }
